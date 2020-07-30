@@ -15,6 +15,9 @@ import { CarsNewComponent } from './front/pages/cars-new/cars-new.component';
 import { CarsEditComponent } from './front/pages/cars-edit/cars-edit.component';
 import { CarsDeleteComponent } from './front/pages/cars-delete/cars-delete.component';
 import { UsersComponent } from './admin/pages/users/users.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,19 @@ import { UsersComponent } from './admin/pages/users/users.component';
     CarsEditComponent,
     CarsDeleteComponent,
     UsersComponent,
+    NotFoundComponent
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, MatSidenavModule, MatIconModule, MatListModule, MatButtonModule, MatToolbarModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule,
+    AppRoutingModule,
+    RouterModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
