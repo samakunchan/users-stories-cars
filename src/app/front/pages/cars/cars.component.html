@@ -1,1 +1,5 @@
-<p>cars works!</p>
+<section class="recipes-container">
+  <ng-container *ngFor="let car of cars$ | async; let i = index">
+    <p>{{ car.nom }}</p>
+  </ng-container>
+</section>

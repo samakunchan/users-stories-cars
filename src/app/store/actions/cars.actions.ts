@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Car } from '../../core/models/car.model';
 
 export enum CarsActionTypes {
   LoadCars = '[Home] Load Cars',
@@ -15,21 +16,21 @@ export class LoadCars implements Action {
 
 export class NewCars implements Action {
   readonly type = CarsActionTypes.NewCars;
-  constructor(public payload: { data: any }) {}
+  constructor(public payload: { data: Car }) {}
 }
 
 export class EditCars implements Action {
   readonly type = CarsActionTypes.EditCars;
-  constructor(public payload: { data: any }) {}
+  constructor(public payload: { data: Car }) {}
 }
 
 export class DeleteCars implements Action {
   readonly type = CarsActionTypes.DeleteCars;
-  constructor(public payload: { data: any }) {}
+  constructor(public payload: { data: Car }) {}
 }
 export class LoadCarsSuccess implements Action {
   readonly type = CarsActionTypes.LoadCarsSuccess;
-  constructor(public payload: { data: any }) {}
+  constructor(public payload: { data: Car[] }) {}
 }
 
 export class LoadCarsFailure implements Action {

@@ -4,7 +4,7 @@ import { Car } from '../../core/models/car.model';
 export const carsFeatureKey = 'cars';
 
 export interface CarsState {
-  datas: Car | string;
+  datas: Car[] | string;
   loading: boolean;
   loaded: boolean;
 }
