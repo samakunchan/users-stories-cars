@@ -34,6 +34,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UserEffects } from './store/effects/user.effects';
+import { userReducer } from './store/reducers/user.reducer';
 
 @NgModule({
   declarations: [
@@ -58,10 +60,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatToolbarModule,
     AppRoutingModule,
     RouterModule,
-    StoreModule.forRoot({ cars: carsReducer }),
+    StoreModule.forRoot({ cars: carsReducer, user: userReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([CarsEffects]),
+    EffectsModule.forRoot([CarsEffects, UserEffects]),
     MatCardModule,
     MatDialogModule,
     ReactiveFormsModule,
