@@ -1,6 +1,8 @@
 <mat-toolbar class="elevation toolbar">
   <span class="toolbar__title">Users Stories</span>
   <div class="toolbar__flex-spacer"></div>
-    <a mat-list-item routerLink="/cars" class="toolbar__nav-link">Cars</a>
-    <a mat-list-item routerLink="/cars/new"  class="toolbar__nav-link">Ajouter une voiture</a>
+  <a mat-list-item routerLink="/cars" class="toolbar__nav-link">Cars</a>
+  <button mat-button (click)="onAddNewCar()" class="toolbar__nav-link" title="Ajouter une voiture">
+    <mat-icon>add</mat-icon>
+  </button>
 </mat-toolbar>

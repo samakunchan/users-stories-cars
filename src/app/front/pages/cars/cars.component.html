@@ -1,1 +1,5 @@
-<p>cars works!</p>
+<section class="cars-container">
+  <ng-container *ngFor="let car of cars$ | async">
+    <app-cars-list [car]="car"></app-cars-list>
+  </ng-container>
+</section>
