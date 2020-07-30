@@ -14,7 +14,11 @@ export class CarsService {
   }
 
   addCar(listCars: Car[], car: Car): Car[] {
-    return listCars.concat([car]);
+    const newCar = {
+      ...car,
+      ...{ id: Date.now() },
+    };
+    return listCars.concat([newCar]);
   }
 
   editCar(listCars: Car[], replaceCar: Car): Car[] {
@@ -23,7 +27,7 @@ export class CarsService {
       ...listCars[searchCar],
       ...replaceCar,
     };
-    return listCars.map((obj) => [carsEdited].find((o) => o.id === obj.id) || obj);
+    return listCars.map((cars) => [carsEdited].find((o) => o.id === cars.id) || cars);
   }
 
   deleteCar(listCars: Car[], deletedCar: Car): Car[] {

@@ -2,7 +2,7 @@ import { Car } from '../models/car.model';
 
 export const carsDatas: Car[] = [
   {
-    id: 0,
+    id: Date.now(),
     nom: 'Peugeot 206',
     couleur: 'bleu',
     dateAchat: '01/01/2020',
@@ -11,7 +11,7 @@ export const carsDatas: Car[] = [
     marque: 'Peugeot',
   },
   {
-    id: 1,
+    id: Date.now() + 1,
     nom: 'Renault Twingo',
     couleur: 'bleu',
     dateAchat: '01/01/2020',
@@ -20,7 +20,7 @@ export const carsDatas: Car[] = [
     marque: 'Renault',
   },
   {
-    id: 2,
+    id: Date.now() + 2,
     nom: 'Citroen DS',
     couleur: 'bleu',
     dateAchat: '01/01/2020',

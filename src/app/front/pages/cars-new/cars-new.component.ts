@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { NewCars } from '../../../store/actions/cars.actions';
-import { carsDatas } from '../../../core/fakedata/cars-datas';
 import { Car } from '../../../core/models/car.model';
 
 @Component({
@@ -50,7 +49,6 @@ export class CarsNewComponent implements OnInit {
     const dateFormat = day + '/' + mounth + '/' + year;
     const submitValue: Car = {
       ...this.carForm.value,
-      ...{ id: carsDatas.length + 1 },
       ...{ dateAchat: dateFormat },
     };
     this.store.dispatch(new NewCars({ data: submitValue }));
