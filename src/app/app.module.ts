@@ -10,9 +10,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CarsComponent } from './front/pages/cars/cars.component';
+import { CarsNewComponent } from './front/pages/cars-new/cars-new.component';
+import { CarsEditComponent } from './front/pages/cars-edit/cars-edit.component';
+import { CarsDeleteComponent } from './front/pages/cars-delete/cars-delete.component';
+import { UsersComponent } from './admin/pages/users/users.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    CarsComponent,
+    CarsNewComponent,
+    CarsEditComponent,
+    CarsDeleteComponent,
+    UsersComponent,
+  ],
   imports: [BrowserModule, BrowserAnimationsModule, MatSidenavModule, MatIconModule, MatListModule, MatButtonModule, MatToolbarModule],
   providers: [],
   bootstrap: [AppComponent],
