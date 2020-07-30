@@ -45,7 +45,7 @@ export class CarsNewComponent implements OnInit {
   onSubmit(): void {
     const dateGen = new Date(Date.parse(this.carForm.value.dateAchat));
     const day = dateGen.getDate() <= 10 ? '0' + dateGen.getDate() : dateGen.getDate();
-    const mounth = dateGen.getMonth() <= 10 ? '0' + dateGen.getMonth() : dateGen.getMonth();
+    const mounth = dateGen.getMonth() + 1 <= 10 ? '0' + (dateGen.getMonth() + 1) : dateGen.getMonth() + 1;
     const year = dateGen.getFullYear();
     const dateFormat = day + '/' + mounth + '/' + year;
     const submitValue: Car = {

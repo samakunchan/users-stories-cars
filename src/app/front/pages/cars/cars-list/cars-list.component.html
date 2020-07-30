@@ -10,7 +10,9 @@
     <p>Immatriculation: {{ car.immatriculation }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <a routerLink="cars/edit/{{ car.id }}" mat-button>Modifier</a>
+    <button mat-button (click)="onEditNewCar(car)" class="toolbar__nav-link" title="Ajouter une voiture">
+      <mat-icon>edit</mat-icon>
+    </button>
     <a routerLink="cars/delete/{{ car.id }}" mat-button>Supprimer</a>
   </mat-card-actions>
 </mat-card>
