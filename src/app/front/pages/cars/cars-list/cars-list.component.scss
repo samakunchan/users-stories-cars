@@ -1,0 +1,11 @@
+.car-card {
+  max-width: 400px;
+  flex: 0 0 35%;
+  margin: 10px;
+  @media (max-width: 768px) {
+    flex: 0 0 35%;
+  }
+  @media (max-width: 425px) {
+    flex: 0 0 80%;
+  }
+}

@@ -1,0 +1,16 @@
+<mat-card class="car-card">
+  <mat-card-header>
+    <mat-card-title>{{ car.nom }}</mat-card-title>
+    <mat-card-subtitle>Marque: {{ car.marque }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Etat: {{ car.etat }}</p>
+    <p>Couleur: {{ car.couleur }}</p>
+    <p>Date d'achat: {{ car.dateAchat }}</p>
+    <p>Immatriculation: {{ car.immatriculation }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a routerLink="cars/edit/{{ car.id }}" mat-button>Modifier</a>
+    <a routerLink="cars/delete/{{ car.id }}" mat-button>Supprimer</a>
+  </mat-card-actions>
+</mat-card>

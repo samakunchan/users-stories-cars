@@ -25,6 +25,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { carsReducer } from './store/reducers/cars.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CarsEffects } from './store/effects/cars.effects';
+import { CarsListComponent } from './front/pages/cars/cars-list/cars-list.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { CarsEffects } from './store/effects/cars.effects';
     CarsDeleteComponent,
     UsersComponent,
     NotFoundComponent,
+    CarsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { CarsEffects } from './store/effects/cars.effects';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([CarsEffects]),
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

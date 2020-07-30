@@ -1,5 +1,5 @@
-<section class="recipes-container">
-  <ng-container *ngFor="let car of cars$ | async; let i = index">
-    <p>{{ car.nom }}</p>
+<section class="cars-container">
+  <ng-container *ngFor="let car of cars$ | async">
+    <app-cars-list [car]="car"></app-cars-list>
   </ng-container>
 </section>
