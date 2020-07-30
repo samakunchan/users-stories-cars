@@ -13,6 +13,8 @@
     <button mat-button (click)="onEditNewCar(car)" class="toolbar__nav-link" title="Ajouter une voiture">
       <mat-icon>edit</mat-icon>
     </button>
-    <a routerLink="cars/delete/{{ car.id }}" mat-button>Supprimer</a>
+    <button mat-button (click)="onDeleteNewCar(car)" class="toolbar__nav-link" title="Ajouter une voiture">
+      <mat-icon>delete</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

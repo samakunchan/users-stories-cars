@@ -45,7 +45,6 @@ export class CarsEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.carEditForm.value);
     const submitValue: Car = {
       ...this.carEditForm.value,
       ...{ id: this.car.id },

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType, OnInitEffects } from '@ngrx/effects';
-import { CarsActionTypes, EditCars, LoadCars, LoadCarsSuccess, NewCars } from '../actions/cars.actions';
+import { CarsActionTypes, DeleteCars, EditCars, LoadCars, LoadCarsSuccess, NewCars } from '../actions/cars.actions';
 import { Action, Store } from '@ngrx/store';
 import { CarsService } from '../../core/services/cars.service';
 import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
@@ -33,7 +33,12 @@ export class CarsEffects implements OnInitEffects {
   );
 
   @Effect({ dispatch: false })
-  deleteCar$ = this.actions$.pipe(ofType<NewCars>(CarsActionTypes.DeleteCars));
+  deleteCar$ = this.actions$.pipe(
+    ofType<DeleteCars>(CarsActionTypes.DeleteCars),
+    withLatestFrom(this.store.select(carSuccessfullyLoaded)),
+    map(([delCar, listCars]) => this.carsService.deleteCar(listCars, delCar.payload.data)),
+    tap((data) => this.store.dispatch(new LoadCarsSuccess({ data }))),
+  );
 
   constructor(private actions$: Actions, private carsService: CarsService, private store: Store<AppState>) {}
 

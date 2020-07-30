@@ -25,4 +25,8 @@ export class CarsService {
     };
     return listCars.map((obj) => [carsEdited].find((o) => o.id === obj.id) || obj);
   }
+
+  deleteCar(listCars: Car[], deletedCar: Car): Car[] {
+    return listCars.filter((data) => data.id !== deletedCar.id);
+  }
 }

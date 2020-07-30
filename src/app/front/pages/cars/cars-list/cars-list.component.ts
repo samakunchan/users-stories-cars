@@ -3,6 +3,7 @@ import { Car } from '../../../../core/models/car.model';
 import { DialogBuilder } from '../../../../core/utils/builders/dialogBuilder';
 import { MatDialog } from '@angular/material/dialog';
 import { CarsEditComponent } from '../../cars-edit/cars-edit.component';
+import { CarsDeleteComponent } from '../../cars-delete/cars-delete.component';
 
 @Component({
   selector: 'app-cars-list',
@@ -22,5 +23,14 @@ export class CarsListComponent implements OnInit {
       .withDatas(car)
       .build();
     this.dialog.open(CarsEditComponent, dialogConfig).afterClosed();
+  }
+
+  onDeleteNewCar(car: Car): void {
+    const dialogConfig = new DialogBuilder()
+      .withTitle('Suppression: ' + car.nom)
+      .withWidth('400px')
+      .withDatas(car)
+      .build();
+    this.dialog.open(CarsDeleteComponent, dialogConfig).afterClosed();
   }
 }
