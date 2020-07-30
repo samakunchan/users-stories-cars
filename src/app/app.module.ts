@@ -18,6 +18,13 @@ import { UsersComponent } from './admin/pages/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { carsReducer } from './store/reducers/cars.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CarsEffects } from './store/effects/cars.effects';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,7 @@ import { NotFoundComponent } from './not-found.component';
     CarsEditComponent,
     CarsDeleteComponent,
     UsersComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,10 @@ import { NotFoundComponent } from './not-found.component';
     MatToolbarModule,
     AppRoutingModule,
     RouterModule,
+    StoreModule.forRoot({ cars: carsReducer }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forRoot([CarsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
