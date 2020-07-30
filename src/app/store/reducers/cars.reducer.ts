@@ -4,7 +4,7 @@ import { Car } from '../../core/models/car.model';
 export const carsFeatureKey = 'cars';
 
 export interface CarsState {
-  datas: Car[] | string;
+  datas: Car[];
   loading: boolean;
   loaded: boolean;
 }
@@ -17,17 +17,14 @@ export const initialState: CarsState = {
 
 export function carsReducer(state = initialState, action: CarsActions): CarsState {
   switch (action.type) {
+    // case CarsActionTypes.NewCars:
+    //   return {
+    //     ...state
+    //   };
     case CarsActionTypes.LoadCarsSuccess:
       return {
         ...state,
         datas: action.payload.data,
-        loading: false,
-        loaded: true,
-      };
-    case CarsActionTypes.LoadCarsFailure:
-      return {
-        ...state,
-        datas: action.payload.error,
         loading: false,
         loaded: true,
       };

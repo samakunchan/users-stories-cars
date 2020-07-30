@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType, OnInitEffects } from '@ngrx/effects';
 import { CarsActionTypes, LoadCars, LoadCarsSuccess, NewCars } from '../actions/cars.actions';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { CarsService } from '../../core/services/cars.service';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { Car } from '../../core/models/car.model';
+import { AppState } from '../../reducers';
+import { carSuccessfullyLoaded } from '../selectors/cars.selectors';
 
 @Injectable()
 export class CarsEffects implements OnInitEffects {
@@ -15,7 +17,12 @@ export class CarsEffects implements OnInitEffects {
   );
 
   @Effect({ dispatch: false })
-  newCar$ = this.actions$.pipe(ofType<NewCars>(CarsActionTypes.NewCars));
+  newCar$ = this.actions$.pipe(
+    ofType<NewCars>(CarsActionTypes.NewCars),
+    withLatestFrom(this.store.select(carSuccessfullyLoaded)),
+    map(([newCar, listCars]) => this.carsService.addCar(listCars, newCar.payload.data)),
+    tap((data) => this.store.dispatch(new LoadCarsSuccess({ data }))),
+  );
 
   @Effect({ dispatch: false })
   editCar$ = this.actions$.pipe(ofType<NewCars>(CarsActionTypes.EditCars));
@@ -23,7 +30,7 @@ export class CarsEffects implements OnInitEffects {
   @Effect({ dispatch: false })
   deleteCar$ = this.actions$.pipe(ofType<NewCars>(CarsActionTypes.DeleteCars));
 
-  constructor(private actions$: Actions, private carsService: CarsService) {}
+  constructor(private actions$: Actions, private carsService: CarsService, private store: Store<AppState>) {}
 
   ngrxOnInitEffects(): Action {
     return new LoadCars();

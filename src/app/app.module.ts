@@ -27,6 +27,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { CarsEffects } from './store/effects/cars.effects';
 import { CarsListComponent } from './front/pages/cars/cars-list/cars-list.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -56,6 +63,13 @@ import { MatCardModule } from '@angular/material/card';
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([CarsEffects]),
     MatCardModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

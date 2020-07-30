@@ -11,7 +11,7 @@ import { Car } from '../../../core/models/car.model';
   styleUrls: ['./cars.component.scss'],
 })
 export class CarsComponent implements OnInit {
-  cars$: Observable<Car[] | string>;
+  cars$: Observable<Car[]>;
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {

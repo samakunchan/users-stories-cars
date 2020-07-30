@@ -12,4 +12,8 @@ export class CarsService {
   loadAllCars(): Observable<Car[]> {
     return of(carsDatas);
   }
+
+  addCar(listCar: Car[], car: Car): Car[] {
+    return listCar.concat([car]);
+  }
 }
