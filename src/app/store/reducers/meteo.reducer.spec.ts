@@ -1,11 +1,11 @@
-import { reducer, initialState } from './meteo.reducer';
+import { meteoReducer, initialState } from './meteo.reducer';
 
 describe('Meteo Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = meteoReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
