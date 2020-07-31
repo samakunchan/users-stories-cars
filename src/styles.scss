@@ -12,3 +12,17 @@ mat-sidenav-container {
   max-width: 1340px;
   margin: 0 auto;
 }
+.sub-banner {
+  background-color: #5c6bba;
+  &__sub-banner {
+    height: 55px;
+    background-color: #5c6bba;
+  }
+  &__informations {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+.elevation {
+  box-shadow: 0 2px 8px -5px black;
+}

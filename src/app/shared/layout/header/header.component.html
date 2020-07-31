@@ -6,3 +6,22 @@
     <mat-icon>add</mat-icon>
   </button>
 </mat-toolbar>
+<div class="sub-banner">
+  <div class="sub-banner__sub-banner"></div>
+  <div *ngIf="$totalCarCreated$ | async as total" class="sub-banner__informations">
+    <div>
+      <span class="toolbar__title">Total: voiture créé: {{ total.length }}</span>
+    </div>
+    <div *ngIf="oldestCar$ | async as oldCar">
+      <span class="toolbar__title">
+        Voiture la plus ancienne : {{ oldCar.immatriculation }} - {{ oldCar.nom }} - {{ oldCar.couleur }} -
+        <ng-container *ngIf="dateReformated$ | async as dataFormated">
+          <span timeago [date]="dataFormated" [live]="live"></span>
+        </ng-container>
+      </span>
+    </div>
+    <div>
+      <span class="toolbar__title">La Météo: xxxxxxxxxx</span>
+    </div>
+  </div>
+</div>

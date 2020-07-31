@@ -36,6 +36,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserEffects } from './store/effects/user.effects';
 import { userReducer } from './store/reducers/user.reducer';
+import { TimeagoCustomFormatter, TimeagoFormatter, TimeagoIntl, TimeagoModule } from 'ngx-timeago';
+
+export class MyIntl extends TimeagoIntl {}
 
 @NgModule({
   declarations: [
@@ -72,6 +75,10 @@ import { userReducer } from './store/reducers/user.reducer';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    TimeagoModule.forRoot({
+      intl: { provide: TimeagoIntl, useClass: MyIntl },
+      formatter: { provide: TimeagoFormatter, useClass: TimeagoCustomFormatter },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

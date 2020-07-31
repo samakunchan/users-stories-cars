@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { NewCars } from '../../../store/actions/cars.actions';
 import { Car } from '../../../core/models/car.model';
+import { getUserId } from '../../../store/selectors/user.selectors';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cars-new',
@@ -47,11 +49,20 @@ export class CarsNewComponent implements OnInit {
     const mounth = dateGen.getMonth() + 1 <= 10 ? '0' + (dateGen.getMonth() + 1) : dateGen.getMonth() + 1;
     const year = dateGen.getFullYear();
     const dateFormat = day + '/' + mounth + '/' + year;
-    const submitValue: Car = {
-      ...this.carForm.value,
-      ...{ dateAchat: dateFormat },
-    };
-    this.store.dispatch(new NewCars({ data: submitValue }));
+
+    this.store
+      .select(getUserId)
+      .pipe(
+        tap((userId) => {
+          const submitValue: Car = {
+            ...this.carForm.value,
+            ...{ dateAchat: dateFormat },
+            ...{ createdBy: userId },
+          };
+          this.store.dispatch(new NewCars({ data: submitValue }));
+        }),
+      )
+      .subscribe();
     this.onClose();
   }
 }
