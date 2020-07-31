@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AppState } from '../../../reducers';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { User } from '../../../core/models/user.model';
+import { getUserId } from '../../../store/selectors/user.selectors';
 
 @Component({
   selector: 'app-footer',
@@ -6,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  constructor() {}
+  userId$: Observable<User>;
+  constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userId$ = this.store.select(getUserId);
+  }
 }

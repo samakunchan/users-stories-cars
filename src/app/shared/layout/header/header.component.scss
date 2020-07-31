@@ -18,3 +18,13 @@
     flex-grow: 1;
   }
 }
+.meteo-block {
+  position: relative;
+  &__meteo-img {
+    position: absolute;
+    top: -45px;
+  }
+  &__meteo-text {
+    margin: 0 10px;
+  }
+}

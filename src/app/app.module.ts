@@ -34,6 +34,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UserEffects } from './store/effects/user.effects';
+import { userReducer } from './store/reducers/user.reducer';
+import { TimeagoCustomFormatter, TimeagoFormatter, TimeagoIntl, TimeagoModule } from 'ngx-timeago';
+import { HttpClientModule } from '@angular/common/http';
+import { MeteoEffects } from './store/effects/meteo.effects';
+import { meteoReducer } from './store/reducers/meteo.reducer';
+
+export class MyIntl extends TimeagoIntl {}
 
 @NgModule({
   declarations: [
@@ -58,10 +66,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatToolbarModule,
     AppRoutingModule,
     RouterModule,
-    StoreModule.forRoot({ cars: carsReducer }),
+    StoreModule.forRoot({ cars: carsReducer, user: userReducer, meteo: meteoReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([CarsEffects]),
+    EffectsModule.forRoot([CarsEffects, UserEffects, MeteoEffects]),
     MatCardModule,
     MatDialogModule,
     ReactiveFormsModule,
@@ -70,6 +78,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HttpClientModule,
+    TimeagoModule.forRoot({
+      intl: { provide: TimeagoIntl, useClass: MyIntl },
+      formatter: { provide: TimeagoFormatter, useClass: TimeagoCustomFormatter },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
