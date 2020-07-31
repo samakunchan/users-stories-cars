@@ -20,8 +20,10 @@
         </ng-container>
       </span>
     </div>
-    <div>
-      <span class="toolbar__title">La Météo: xxxxxxxxxx</span>
+    <div *ngIf="meteo$ | async as meteo" class="meteo-block">
+      <span class="toolbar__title meteo-block__meteo-text">Paris</span>
+      <img src="{{ meteo.condition.icon }}" alt="La météo" class="meteo-block__meteo-img" />
+      <span class="toolbar__title meteo-block__meteo-text">{{ meteo.temp_c }}°</span>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { userFeatureKey, UserState } from '../reducers/user.reducer';
 
-export const getCarsState = createFeatureSelector<UserState>(userFeatureKey);
+export const getUserState = createFeatureSelector<UserState>(userFeatureKey);
 
-export const getUserId = createSelector(getCarsState, (state: UserState) => state.user);
+export const getUserId = createSelector(getUserState, (state: UserState) => state.user);

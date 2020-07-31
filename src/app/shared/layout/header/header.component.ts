@@ -7,10 +7,11 @@ import { AppState } from '../../../reducers';
 import { Observable } from 'rxjs';
 import { Car } from '../../../core/models/car.model';
 import { carSuccessfullyLoaded } from '../../../store/selectors/cars.selectors';
-import { map, withLatestFrom } from 'rxjs/operators';
+import { map, tap, withLatestFrom } from 'rxjs/operators';
 import { getUserId } from '../../../store/selectors/user.selectors';
 import { TimeagoIntl } from 'ngx-timeago';
 import { strings as frenchStrings } from 'ngx-timeago/language-strings/fr';
+import { getMeteoData } from '../../../store/selectors/meteo.selectors';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
   $totalCarCreated$: Observable<Car[]>;
   oldestCar$: Observable<Car>;
   dateReformated$: Observable<number>;
+  meteo$: Observable<any>;
   live = true;
   constructor(private dialog: MatDialog, private store: Store<AppState>, private intl: TimeagoIntl) {
     intl.strings = frenchStrings;
@@ -28,6 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.meteo$ = this.store.select(getMeteoData).pipe(tap((data) => console.log(data)));
     this.$totalCarCreated$ = this.store.select(carSuccessfullyLoaded).pipe(
       withLatestFrom(this.store.select(getUserId)),
       map(([listCars, userId]) => listCars.filter((car) => car.createdBy === userId)),
