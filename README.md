@@ -1,27 +1,52 @@
-# UsersStoriesCars
+# UsersStoriesCars Application test
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
+Ceci est un application destiné au test.
 
-## Development server
+### Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Ouvrez l'invite de commande dans le dossier que vous désirez, puis exécutez les commandes ci dessous.
 
-## Code scaffolding
+    git clone https://github.com/samakunchan/users-stories-cars.git
+    
+Toujours dans l'invite de commande entrez dans votre dossier avec ``cd ./mon-dossier`` puis `npm install`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pour terminer, tapez:
 
-## Build
+    ng serve
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Exécutez cette url pour voir le résultat: ``http://localhost:4200``
+### Docker
 
-## Running unit tests
+Vous pouvez exécutez le projet sous Docker.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Etape 1:
+<br> 
+NB: Le point final à la fin de cette commande est important, il ne faut pas l'oublier
+      
+      docker build -t users-stories-cars .
 
-## Running end-to-end tests
+- Etape 2:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+      docker run -p 3000:80 users-stories-cars
+    
+Exécutez cette url pour voir le résultat: ``http://localhost:3000``
 
-## Further help
+### Tests
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Bien que les fichiers soient présent, les tests n'ont pas été configuré pour ce projet. La commande reste fonctionnel.
+
+    ng test
+
+## Principes
+Comment fonctionne l'application?
+<br>
+Il tourne autour de la gestion du CRUD
+### CRUD: Create Read Update Delete
+Le CRUD est gérer par les sides effects, et donc a fortiori les services.
+
+Le but c'est qu'a chaque action de l'utilisateur, celui-ci est détecter par les sides effects, qui exécute le service approprié. Si l'action ne renvoie pas d'érreur, on exécute la LoadSuccess qui va contenir les données pour le store.
+
+C'est uniquement à cette condition que le store est mis à jours.
+
+    Action de l'utilisateur -> Exécution de l'action -> Détection de l'action par les sides effects
+    ->Utilisation du service -> Construction des données -> si ok on envoie les données a l'action Success
