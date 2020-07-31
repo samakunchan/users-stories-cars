@@ -11,7 +11,7 @@ export class LoadMeteo implements Action {
 
 export class LoadMeteoSuccess implements Action {
   readonly type = MeteoActionTypes.LoadMeteoSuccess;
-  constructor(private payload: { meteo: any }) {}
+  constructor(public payload: { meteo: any }) {}
 }
 
 export type MeteoActions = LoadMeteo | LoadMeteoSuccess;
