@@ -7,6 +7,7 @@ import { NewCars } from '../../../store/actions/cars.actions';
 import { Car } from '../../../core/models/car.model';
 import { getUserId } from '../../../store/selectors/user.selectors';
 import { tap } from 'rxjs/operators';
+import { DateValidators } from '../../../core/utils/validators/date-validators';
 
 @Component({
   selector: 'app-cars-new',
@@ -32,7 +33,7 @@ export class CarsNewComponent implements OnInit {
     this.carForm = this.formBuilder.group({
       nom: ['', [Validators.required, Validators.minLength(3)]],
       couleur: ['', [Validators.required, Validators.minLength(3)]],
-      dateAchat: ['', [Validators.required, Validators.minLength(3)]],
+      dateAchat: ['', Validators.compose([Validators.required, DateValidators.dateValidator])],
       etat: ['', [Validators.required, Validators.minLength(3)]],
       immatriculation: ['', [Validators.required, Validators.minLength(3)]],
       marque: ['', [Validators.required, Validators.minLength(3)]],
