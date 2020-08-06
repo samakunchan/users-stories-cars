@@ -45,19 +45,13 @@ export class CarsNewComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const dateGen = new Date(Date.parse(this.carForm.value.dateAchat));
-    const day = dateGen.getDate() <= 10 ? '0' + dateGen.getDate() : dateGen.getDate();
-    const mounth = dateGen.getMonth() + 1 <= 10 ? '0' + (dateGen.getMonth() + 1) : dateGen.getMonth() + 1;
-    const year = dateGen.getFullYear();
-    const dateFormat = day + '/' + mounth + '/' + year;
-
     this.store
       .select(getUserId)
       .pipe(
         tap((userId) => {
           const submitValue: Car = {
             ...this.carForm.value,
-            ...{ dateAchat: dateFormat },
+            ...{ dateAchat: this.carForm.value.dateAchat },
             ...{ createdBy: userId },
           };
           this.store.dispatch(new NewCars({ data: submitValue }));
